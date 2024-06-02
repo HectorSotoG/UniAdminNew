@@ -572,34 +572,6 @@ public class TeachersViews {
 		backToMenu.setBounds(24, 553, 152, 36);
 		editPanel.add(backToMenu);
 
-		JButton addTeachBtn = new JButton("Completar");
-		addTeachBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
-		});
-		addTeachBtn.setFont(new Font("Lato", Font.PLAIN, 16));
-		addTeachBtn.setBackground(new Color(252, 209, 156));
-		addTeachBtn.setBounds(266, 553, 152, 36);
-		editPanel.add(addTeachBtn);
-
-		JButton editPhoto = new JButton("Editar Foto");
-		editPhoto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		editPhoto.setFont(new Font("Lato", Font.PLAIN, 16));
-		editPhoto.setBackground(new Color(252, 209, 156));
-		editPhoto.setBounds(289, 325, 129, 29);
-		editPanel.add(editPhoto);
-
-		JLabel pictureHolder = new JLabel("");
-		pictureHolder.setHorizontalAlignment(SwingConstants.CENTER);
-		pictureHolder.setIcon(new ImageIcon(TeacherAdd.class.getResource("/Icons/icons8-circled-user-100.png")));
-		pictureHolder.setBounds(289, 195, 129, 130);
-		editPanel.add(pictureHolder);
-
 		JLabel IdTxt = new JLabel("Ingresar ID del Docente");
 		IdTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		IdTxt.setBounds(24, 93, 187, 20);
@@ -623,6 +595,71 @@ public class TeachersViews {
 			}
 		});
 		editPanel.add(searchID);
+		
+		JButton addTeachBtn = new JButton("Completar");
+		addTeachBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				String name = nameRequest.getText();
+				String lstName = lstNameReq.getText();
+				String email = emailRequest.getText();
+				String phone = phoneReq.getText();
+				String birth = birthDate.getText();
+				String school = schoolGrade.getText();
+				
+				if(id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "No se introdujo ningún ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+					idField.requestFocus();
+					
+				}else if(functions.edit(id,name,lstName,email,phone,birth,school)) {
+					JOptionPane.showMessageDialog(null, "Modificación Exitosa", "HECHO", JOptionPane.INFORMATION_MESSAGE);
+					
+					idField.setText("");
+					nameRequest.setText("");
+					lstNameReq.setText("");
+					emailRequest.setText("");
+					phoneReq.setText("");
+					birthDate.setText("");
+					schoolGrade.setText("");
+					
+					idField.requestFocus();
+				}else {
+					JOptionPane.showMessageDialog(null, "No se pudo modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
+					idField.setText("");
+					nameRequest.setText("");
+					lstNameReq.setText("");
+					emailRequest.setText("");
+					phoneReq.setText("");
+					birthDate.setText("");
+					schoolGrade.setText("");
+					
+					idField.requestFocus();
+				}
+				
+			}
+		});
+		addTeachBtn.setFont(new Font("Lato", Font.PLAIN, 16));
+		addTeachBtn.setBackground(new Color(252, 209, 156));
+		addTeachBtn.setBounds(266, 553, 152, 36);
+		editPanel.add(addTeachBtn);
+
+		JButton editPhoto = new JButton("Editar Foto");
+		editPhoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		editPhoto.setFont(new Font("Lato", Font.PLAIN, 16));
+		editPhoto.setBackground(new Color(252, 209, 156));
+		editPhoto.setBounds(289, 325, 129, 29);
+		editPanel.add(editPhoto);
+
+		JLabel pictureHolder = new JLabel("");
+		pictureHolder.setHorizontalAlignment(SwingConstants.CENTER);
+		pictureHolder.setIcon(new ImageIcon(TeacherAdd.class.getResource("/Icons/icons8-circled-user-100.png")));
+		pictureHolder.setBounds(289, 195, 129, 130);
+		editPanel.add(pictureHolder);
+
 
 		frame.setVisible(true);
 		frame.repaint();

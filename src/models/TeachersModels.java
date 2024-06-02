@@ -50,8 +50,35 @@ public class TeachersModels {
 		return false;
 	}
 	
-	public void edit() {
-		
+	public boolean edit(String id, String name, String lstName, String email, String tel, String birthDate, String schoolGrade) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
+					"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+
+			PreparedStatement insertar = con.prepareStatement("UPDATE profesores SET Nombre=?,Apellido=?,Email=?, Telefono=?, Fecha_Nacimiento=?,Grado_Estudios=? WHERE ID=?");
+
+			insertar.setString(1,name);
+			insertar.setString(2, lstName);
+			insertar.setString(5, birthDate);
+			insertar.setString(3, email);
+			insertar.setString(4, tel);
+			insertar.setString(6, schoolGrade);
+			insertar.setInt(7, Integer.parseInt(id));
+
+			insertar.executeUpdate();
+			
+			con.close();
+			
+			return true;
+		}
+
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e);
+		}
+		return false;
 	}
 	
 	public void search(String id, JTextField name, JTextField lstName, JTextField email, JTextField phone, JTextField birthDate, JTextField school) {
@@ -79,13 +106,16 @@ public class TeachersModels {
 			}
 			
 			con.close();
+		
 			
 		}
 
 		catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, e);
+			
 		}
+		
 	}
 	
 	
