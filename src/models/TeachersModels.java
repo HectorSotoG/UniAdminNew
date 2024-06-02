@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import controllers.HomeController;
 
@@ -53,7 +54,7 @@ public class TeachersModels {
 		
 	}
 	
-	public void search(String id) {
+	public void search(String id, JTextField name, JTextField lstName, JTextField email, JTextField phone, JTextField birthDate, JTextField school) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -64,6 +65,18 @@ public class TeachersModels {
 			insertar.setString(1, id);
 
 			ResultSet rs = insertar.executeQuery();
+			
+			if(rs.next()) {
+				name.setText(rs.getString("Nombre"));
+				lstName.setText(rs.getString("Apellido"));
+				email.setText(rs.getString("Email"));
+				phone.setText(rs.getString("Telefono"));
+				birthDate.setText(String.valueOf(rs.getDate("Fecha_Nacimiento")));
+				school.setText(rs.getString("Grado_Estudios"));
+				
+			}else {
+				JOptionPane.showMessageDialog(null, "No se encontró un Docente con ese ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
 			
 			con.close();
 			

@@ -541,41 +541,12 @@ public class TeachersViews {
 		lblIngresarFechaDe.setBounds(24, 365, 204, 20);
 		editPanel.add(lblIngresarFechaDe);
 
-		JTextField dayBirth = new JTextField();
-		dayBirth.setColumns(10);
-		dayBirth.setBackground(new Color(230, 230, 230));
-		dayBirth.setBounds(24, 394, 70, 20);
-		editPanel.add(dayBirth);
+		JTextField birthDate = new JTextField();
+		birthDate.setColumns(10);
+		birthDate.setBackground(new Color(230, 230, 230));
+		birthDate.setBounds(24, 394, 186, 20);
+		editPanel.add(birthDate);
 
-		JTextField monthBirth = new JTextField();
-		monthBirth.setColumns(10);
-		monthBirth.setBackground(new Color(230, 230, 230));
-		monthBirth.setBounds(106, 394, 70, 20);
-		editPanel.add(monthBirth);
-
-		JTextField yearBirth = new JTextField();
-		yearBirth.setColumns(10);
-		yearBirth.setBackground(new Color(230, 230, 230));
-		yearBirth.setBounds(186, 394, 70, 20);
-		editPanel.add(yearBirth);
-
-		JLabel lblNewLabel = new JLabel("dd");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Lato", Font.ITALIC, 14));
-		lblNewLabel.setBounds(34, 418, 46, 14);
-		editPanel.add(lblNewLabel);
-
-		JLabel lblMm = new JLabel("mm");
-		lblMm.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMm.setFont(new Font("Lato", Font.ITALIC, 14));
-		lblMm.setBounds(116, 418, 46, 14);
-		editPanel.add(lblMm);
-
-		JLabel lblYyyy = new JLabel("yyyy");
-		lblYyyy.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYyyy.setFont(new Font("Lato", Font.ITALIC, 14));
-		lblYyyy.setBounds(196, 418, 46, 14);
-		editPanel.add(lblYyyy);
 
 		JTextField schoolGrade = new JTextField();
 		schoolGrade.setColumns(10);
@@ -604,6 +575,7 @@ public class TeachersViews {
 		JButton addTeachBtn = new JButton("Completar");
 		addTeachBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				
 			}
 		});
@@ -647,7 +619,7 @@ public class TeachersViews {
 			public void actionPerformed(ActionEvent e) {
 				String id = idField.getText();
 				
-				functions.search(id);
+				functions.search(id,nameRequest,lstNameReq,emailRequest,phoneReq,birthDate, schoolGrade);
 			}
 		});
 		editPanel.add(searchID);
