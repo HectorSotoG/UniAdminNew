@@ -14,12 +14,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TeacherSearch extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField idField;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -110,31 +112,39 @@ public class TeacherSearch extends JFrame {
 		titleTxt.setBounds(10, 21, 426, 48);
 		searchPanel.add(titleTxt);
 		
-		JLabel IdReqTxt = new JLabel("Ingresar ID del Docente");
-		IdReqTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		IdReqTxt.setBounds(10, 92, 187, 20);
-		searchPanel.add(IdReqTxt);
-		
-		idField = new JTextField();
-		idField.setColumns(10);
-		idField.setBackground(new Color(230, 230, 230));
-		idField.setBounds(187, 92, 148, 20);
-		searchPanel.add(idField);
-		
-		JButton searchID = new JButton("Buscar");
+		JButton searchID = new JButton("Mostrar Tabla");
 		searchID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		searchID.setFont(new Font("Lato", Font.PLAIN, 16));
 		searchID.setBackground(new Color(252, 209, 156));
-		searchID.setBounds(345, 91, 91, 22);
+		searchID.setBounds(54, 92, 350, 34);
 		searchPanel.add(searchID);
 		
 		JButton backToMenu = new JButton("Volver al Menu");
+		backToMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		backToMenu.setFont(new Font("Lato", Font.PLAIN, 16));
 		backToMenu.setBackground(new Color(252, 209, 156));
 		backToMenu.setBounds(10, 551, 152, 36);
 		searchPanel.add(backToMenu);
+		
+		table = new JTable();
+		table.setFont(new Font("Lato", Font.PLAIN, 11));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Nombre", "Apellido", "Fecha_Nacimiento", "Email", "Telefono", "Foto", "Grado_Estudios"
+			}
+		));
+		table.getColumnModel().getColumn(3).setPreferredWidth(104);
+		table.getColumnModel().getColumn(7).setPreferredWidth(92);
+		table.setBounds(16, 152, 426, 361);
+		searchPanel.add(table);
 	}
 }

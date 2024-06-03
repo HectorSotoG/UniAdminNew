@@ -12,10 +12,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 import controllers.HomeController;
 import controllers.TeachersController;
@@ -742,26 +744,31 @@ public class TeachersViews {
 		titleTxt.setBounds(10, 21, 426, 48);
 		searchPanel.add(titleTxt);
 
-		JLabel IdReqTxt = new JLabel("Ingresar ID del Docente");
-		IdReqTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		IdReqTxt.setBounds(10, 92, 187, 20);
-		searchPanel.add(IdReqTxt);
+		JTable table = new JTable();
+		table.setFont(new Font("Lato", Font.PLAIN, 11));
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"ID", "Nombre", "Apellido", "Fecha_Nacimiento", "Email", "Telefono", "Foto", "Grado_Estudios"
+			}
+		));
+		table.getColumnModel().getColumn(3).setPreferredWidth(104);
+		table.getColumnModel().getColumn(7).setPreferredWidth(92);
+		table.setBounds(16, 152, 426, 361);
+		searchPanel.add(table);
 
-		JTextField idField = new JTextField();
-		idField.setColumns(10);
-		idField.setBackground(new Color(230, 230, 230));
-		idField.setBounds(187, 92, 148, 20);
-		searchPanel.add(idField);
-
-		JButton searchID = new JButton("Buscar");
+		JButton searchID = new JButton("Mostrar Registros");
 		searchID.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				functions.dataTable(table);
 			}
 		});
 		searchID.setFont(new Font("Lato", Font.PLAIN, 16));
 		searchID.setBackground(new Color(252, 209, 156));
-		searchID.setBounds(345, 91, 91, 22);
+		searchID.setBounds(31, 91, 91, 30);
 		searchPanel.add(searchID);
+		
 
 		JButton backToMenu = new JButton("Volver al Menu");
 		backToMenu.setFont(new Font("Lato", Font.PLAIN, 16));

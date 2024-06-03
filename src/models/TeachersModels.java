@@ -7,7 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+import com.mysql.cj.xdevapi.Statement;
 
 import controllers.HomeController;
 
@@ -118,5 +122,53 @@ public class TeachersModels {
 		
 	}
 	
-	
+	public void dataTable(JTable table) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
+					"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+
+			PreparedStatement insertar = con.prepareStatement("SELECT * FROM profesores");
+			
+			DefaultTableModel model = new DefaultTableModel();
+			
+			model.addColumn("ID");
+			model.addColumn("Nombre");
+			model.addColumn("Apellido");
+			model.addColumn("Fecha_Nacimiento");
+			model.addColumn("Email");
+			model.addColumn("Telefono");
+			model.addColumn("Foto");
+			model.addColumn("Grado_Estudios");
+			
+			table.setModel(model);
+			
+			String [] data = new String[8];
+			
+			ResultSet rs = insertar.executeQuery();
+			
+			while(rs.next()) {
+				data[0] = rs.getString(1);
+				data[1] = rs.getString(2);
+				data[2] = rs.getString(3);
+				data[3] = rs.getString(4);
+				data[4] = rs.getString(5);
+				data[5] = rs.getString(6);
+				data[6] = rs.getString(7);
+				data[7] = rs.getString(8);
+				
+				model.addRow(data);
+			}
+			con.close();
+			
+		}
+
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e);
+		}
+		
+	}
 }
