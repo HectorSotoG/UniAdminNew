@@ -1,6 +1,8 @@
 package models;
 
+import java.io.FileOutputStream;
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,6 +13,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.mysql.cj.xdevapi.Statement;
 
 import controllers.HomeController;
@@ -85,7 +90,7 @@ public class TeachersModels {
 		return false;
 	}
 	
-	public void search(String id, JTextField name, JTextField lstName, JTextField email, JTextField phone, JTextField birthDate, JTextField school) {
+	public void searchForEdit(String id, JTextField name, JTextField lstName, JTextField email, JTextField phone, JTextField birthDate, JTextField school) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -170,5 +175,127 @@ public class TeachersModels {
 			JOptionPane.showMessageDialog(null, e);
 		}
 		
+	}
+
+	public boolean download(String id) {
+		Document pdf = new Document();
+		
+		try {
+			
+			String root = System.getProperty("user.home");
+			PdfWriter.getInstance(pdf, new FileOutputStream(root + "/Desktop/InfoDocente.pdf"));
+			pdf.open();
+			
+			PdfPTable table = new PdfPTable(8);
+			
+			table.addCell("ID");
+			table.addCell("Nombre");
+			table.addCell("Apellido");
+			table.addCell("Fecha Nacimiento");
+			table.addCell("Email");
+			table.addCell("Telefono");
+			table.addCell("Foto");
+			table.addCell("Grado de Estudios");
+			
+			try {
+				Class.forName("com.mysql.cj.jdbc.Driver");
+
+				Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
+						"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+
+				PreparedStatement insertar = con.prepareStatement("SELECT * FROM profesores WHERE ID= ?");
+				insertar.setString(1, id);
+
+				ResultSet rs = insertar.executeQuery();
+				
+				if(rs.next()) {
+					table.addCell(rs.getString(1));
+					table.addCell(rs.getString(2));
+					table.addCell(rs.getString(3));
+					table.addCell(rs.getString(4));
+					table.addCell(rs.getString(5));
+					table.addCell(rs.getString(6));
+					table.addCell(rs.getString(7));
+					table.addCell(rs.getString(8));
+					
+					pdf.add(table);
+				}else {
+					JOptionPane.showMessageDialog(null, "No se encontró un Docente con ese ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+				
+				pdf.close();
+				con.close();
+				
+				return true;
+			}catch(Exception e) {
+				
+			}
+			
+		}
+
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e);
+			
+		}
+		
+		return false;
+		
+	}
+
+/*	public void downloadSearch(String id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
+					"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+
+			PreparedStatement insertar = con.prepareStatement("SELECT * FROM profesores WHERE ID= ?");
+			insertar.setString(1, id);
+
+			ResultSet rs = insertar.executeQuery();
+			
+			if(rs.next()) {
+				
+			}else {
+				JOptionPane.showMessageDialog(null, "No se encontró un Docente con ese ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			con.close();
+		
+			
+		}
+
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e);
+			
+		}
+		
+	} */ //Pendienteeee
+	
+	
+	public boolean delete(String id) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
+					"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+
+			PreparedStatement insertar = con.prepareStatement("DELETE FROM profesores WHERE ID=?");
+			insertar.setString(1, id);
+			
+			insertar.executeUpdate();
+			
+			con.close();
+			
+			return true;
+		}
+
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(null, e);
+		}
+		return false;
 	}
 }

@@ -65,6 +65,15 @@ public class HomeView {
 		
 		JButton studentButton = new JButton("");
 		studentButton.setBackground(new Color(252, 209, 156));
+		studentButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				students = new StudentsController();
+				students.menu();
+				
+			}
+		});
 		studentButton.setIcon(new ImageIcon(HomeDesign.class.getResource("/Icons/icons8-education-100.png")));
 		studentButton.setFont(new Font("Lato", Font.PLAIN, 16));
 		studentButton.setBounds(396, 106, 220, 180);

@@ -36,6 +36,7 @@ public class TeachersViews {
 	private TeachersController controller;
 	private HomeController home;
 	private TeachersModels functions;
+	private String pictureRoot = "/Icons/icons8-circled-user-200.png"; 
 
 	public TeachersViews() {
 		frame = new JFrame();
@@ -593,7 +594,7 @@ public class TeachersViews {
 			public void actionPerformed(ActionEvent e) {
 				String id = idField.getText();
 				
-				functions.search(id,nameRequest,lstNameReq,emailRequest,phoneReq,birthDate, schoolGrade);
+				functions.searchForEdit(id,nameRequest,lstNameReq,emailRequest,phoneReq,birthDate, schoolGrade);
 			}
 		});
 		editPanel.add(searchID);
@@ -868,10 +869,24 @@ public class TeachersViews {
 		idTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		idTxt.setBounds(10, 140, 195, 20);
 		panel.add(idTxt);
+		
+		JTextField idField = new JTextField();
+		idField.setBackground(new Color(230, 230, 230));
+		idField.setBounds(199, 140, 136, 20);
+		panel.add(idField);
+		idField.setColumns(10);
+		
+		JLabel pictureHolder = new JLabel("");
+		pictureHolder.setHorizontalAlignment(SwingConstants.CENTER);
+		pictureHolder.setIcon(new ImageIcon(TeacherDwnld.class.getResource(pictureRoot)));
+		pictureHolder.setBounds(24, 235, 220, 200);
+		panel.add(pictureHolder);
 
 		JButton searchBtn = new JButton("Buscar");
 		searchBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				//functions.downloadSearch(id); PENDIENTEEE
 			}
 		});
 		searchBtn.setBackground(new Color(252, 209, 156));
@@ -879,21 +894,17 @@ public class TeachersViews {
 		searchBtn.setBounds(345, 139, 89, 23);
 		panel.add(searchBtn);
 
-		JTextField idField = new JTextField();
-		idField.setBackground(new Color(230, 230, 230));
-		idField.setBounds(199, 140, 136, 20);
-		panel.add(idField);
-		idField.setColumns(10);
-
-		JLabel pictureHolder = new JLabel("");
-		pictureHolder.setHorizontalAlignment(SwingConstants.CENTER);
-		pictureHolder.setIcon(new ImageIcon(TeacherDwnld.class.getResource("/Icons/icons8-circled-user-200.png")));
-		pictureHolder.setBounds(24, 235, 220, 200);
-		panel.add(pictureHolder);
+		
 
 		JButton dwnldInfo = new JButton("Descargar Info.");
 		dwnldInfo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				if(functions.download(id)) {
+					JOptionPane.showMessageDialog(null, "PDF descargado con éxito", "HECHO", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Un error ha ocurrido", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		dwnldInfo.setBackground(new Color(252, 209, 156));
@@ -1011,7 +1022,38 @@ public class TeachersViews {
 		pictureHolder.setBounds(24, 235, 220, 200);
 		panel.add(pictureHolder);
 
+		JButton searchBtn = new JButton("Buscar");
+		searchBtn.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchBtn.setBackground(new Color(252, 209, 156));
+		searchBtn.setBounds(345, 119, 89, 23);
+		panel.add(searchBtn);
+
+		JTextField idField = new JTextField();
+		idField.setColumns(10);
+		idField.setBackground(new Color(230, 230, 230));
+		idField.setBounds(199, 120, 136, 20);
+		panel.add(idField);
+
+		JLabel idTxt = new JLabel("Introduzca ID del Docente");
+		idTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		idTxt.setBounds(10, 120, 195, 20);
+		panel.add(idTxt);
+		
 		JButton deleteBtn = new JButton("Eliminar Docente");
+		deleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				
+				if(id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Campo ID está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else if(functions.delete(id)) {
+					JOptionPane.showMessageDialog(null, "Se eliminó correctamente", "HECHO", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "No se encontró ese ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		});
 		deleteBtn.setFont(new Font("Lato", Font.PLAIN, 16));
 		deleteBtn.setBackground(new Color(252, 209, 156));
 		deleteBtn.setBounds(267, 319, 167, 32);
@@ -1029,23 +1071,6 @@ public class TeachersViews {
 		});
 		backToMenu.setBounds(10, 553, 152, 36);
 		panel.add(backToMenu);
-
-		JButton searchBtn = new JButton("Buscar");
-		searchBtn.setFont(new Font("Lato", Font.PLAIN, 16));
-		searchBtn.setBackground(new Color(252, 209, 156));
-		searchBtn.setBounds(345, 119, 89, 23);
-		panel.add(searchBtn);
-
-		JTextField idField = new JTextField();
-		idField.setColumns(10);
-		idField.setBackground(new Color(230, 230, 230));
-		idField.setBounds(199, 120, 136, 20);
-		panel.add(idField);
-
-		JLabel idTxt = new JLabel("Introduzca ID del Docente");
-		idTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		idTxt.setBounds(10, 120, 195, 20);
-		panel.add(idTxt);
 
 		frame.setVisible(true);
 		frame.repaint();

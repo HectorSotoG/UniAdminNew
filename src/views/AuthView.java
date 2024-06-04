@@ -123,9 +123,11 @@ public class AuthView {
         	public void actionPerformed(ActionEvent e) {
         		
         		 
-        		if( functions.login(emailRequest.getText(),passRequest.getText()) )
+        		if( functions.login(emailRequest.getText(),passRequest.getText()) ) {
         			frame.dispose();
-        		 
+        		}else {
+        			JOptionPane.showMessageDialog(null, "No se encontró un usuario con esa info", "ERROR", JOptionPane.ERROR_MESSAGE);
+        		}
         	}
         });
 		loginButton.setBounds(193, 459, 142, 42);
