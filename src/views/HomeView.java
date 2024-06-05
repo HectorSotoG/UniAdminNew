@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import controllers.GroupsController;
 import controllers.HomeController;
 import controllers.StudentsController;
 import controllers.TeachersController;
@@ -25,6 +26,7 @@ public class HomeView {
 	private JPanel contentPane;
 	private TeachersController teachers; 
 	private StudentsController students;
+	private GroupsController groups;
 	
 	public void HomeView() {
 		
@@ -86,6 +88,15 @@ public class HomeView {
 		homePanel.add(classButton);
 		
 		JButton groupButton = new JButton("");
+		groupButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				groups = new GroupsController();
+				groups.menu();
+				
+			}
+		});
 		groupButton.setIcon(new ImageIcon(HomeDesign.class.getResource("/Icons/icons8-group-100.png")));
 		groupButton.setBackground(new Color(252, 209, 156));
 		groupButton.setBounds(396, 361, 220, 180);
