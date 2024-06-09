@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +23,7 @@ import controllers.SignatureController;
 import designer.AddGroups;
 import designer.TeacherAdd;
 import designer.addSignature;
+import designer.detailsSignature;
 import designer.signatureMenu;
 import models.SignatureModel;
 import models.StudentsModel;
@@ -452,6 +454,120 @@ public class SignatureViews {
 	public void details() {
 		contentPane.setLayout(null);
 		
+		JPanel navPanel = new JPanel();
+		navPanel.setBackground(new Color(252, 209, 156));
+		navPanel.setBounds(459, 0, 225, 611);
+		contentPane.add(navPanel);
+		navPanel.setLayout(null);
+
+		JButton goToAdd = new JButton("");
+		goToAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.add();
+			}
+		});
+		goToAdd.setIcon(new ImageIcon(addSignature.class.getResource("/Icons/icons8-add-100.png")));
+		goToAdd.setBorder(new LineBorder(new Color(210, 153, 47), 2));
+		goToAdd.setBackground(new Color(252, 209, 156));
+		goToAdd.setBounds(57, 74, 131, 105);
+		navPanel.add(goToAdd);
+
+		JButton goToDelete = new JButton("");
+		goToDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.delete();
+
+			}
+		});
+		goToDelete.setIcon(new ImageIcon(TeacherAdd.class.getResource("/Icons/icons8-delete-100.png")));
+		goToDelete.setBorder(new LineBorder(new Color(210, 153, 47), 2));
+		goToDelete.setBackground(new Color(252, 209, 156));
+		goToDelete.setBounds(57, 253, 131, 105);
+		navPanel.add(goToDelete);
+
+		JButton goToEdit = new JButton("");
+		goToEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.edit();
+			}
+		});
+		goToEdit.setIcon(new ImageIcon(detailsSignature.class.getResource("/Icons/icons8-edit-100.png")));
+		goToEdit.setBorder(new LineBorder(new Color(210, 153, 47), 2));
+		goToEdit.setBackground(new Color(252, 209, 156));
+		goToEdit.setBounds(57, 432, 131, 105);
+		navPanel.add(goToEdit);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 459, 611);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel titleTxt = new JLabel("Detalles Asignatura");
+		titleTxt.setFont(new Font("Lato", Font.PLAIN, 43));
+		titleTxt.setFont(new Font("Lato", Font.PLAIN, 43));
+		titleTxt.setBounds(10, 24, 403, 53);
+		panel.add(titleTxt);
+		
+		JLabel idTxt = new JLabel("Ingresa ID de Asignatura");
+		idTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		idTxt.setBounds(9, 130, 175, 20);
+		panel.add(idTxt);
+		
+		JTextField idField = new JTextField();
+		idField.setBackground(new Color(230, 230, 230));
+		idField.setBounds(193, 132, 156, 20);
+		panel.add(idField);
+		idField.setColumns(10);
+		
+		JButton searchID = new JButton("Buscar");
+		searchID.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		searchID.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchID.setBackground(new Color(252, 209, 156));
+		searchID.setBounds(358, 132, 92, 20);
+		panel.add(searchID);
+		
+		JTable table = new JTable();
+		table.setBounds(10, 161, 439, 346);
+		panel.add(table);
+		
+		JButton backToMenu = new JButton("Volver al Menu");
+		backToMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.menu();
+			}
+		});
+		backToMenu.setBackground(new Color(252, 209, 156));
+		backToMenu.setFont(new Font("Lato", Font.PLAIN, 16));
+		backToMenu.setBounds(10, 546, 145, 35);
+		panel.add(backToMenu);
+		
+		JButton editBttn = new JButton("Descargar");
+		editBttn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		editBttn.setFont(new Font("Lato", Font.PLAIN, 16));
+		editBttn.setBackground(new Color(252, 209, 156));
+		editBttn.setBounds(290, 546, 159, 35);
+		panel.add(editBttn);
+		
 		frame.setVisible(true);
 		frame.repaint();
 		frame.revalidate();
@@ -460,6 +576,119 @@ public class SignatureViews {
 	
 	public void delete() {
 		contentPane.setLayout(null);
+
+		JPanel navPanel = new JPanel();
+		navPanel.setBackground(new Color(252, 209, 156));
+		navPanel.setBounds(459, 0, 225, 611);
+		contentPane.add(navPanel);
+		navPanel.setLayout(null);
+
+		JButton goToAdd = new JButton("");
+		goToAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.add();
+			}
+		});
+		goToAdd.setIcon(new ImageIcon(addSignature.class.getResource("/Icons/icons8-add-100.png")));
+		goToAdd.setBorder(new LineBorder(new Color(210, 153, 47), 2));
+		goToAdd.setBackground(new Color(252, 209, 156));
+		goToAdd.setBounds(57, 74, 131, 105);
+		navPanel.add(goToAdd);
+
+		JButton goToDetails = new JButton("");
+		goToDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.details();
+
+			}
+		});
+		goToDetails.setIcon(new ImageIcon(detailsSignature.class.getResource("/Icons/icons8-download-100.png")));
+		goToDetails.setBorder(new LineBorder(new Color(210, 153, 47), 2));
+		goToDetails.setBackground(new Color(252, 209, 156));
+		goToDetails.setBounds(57, 253, 131, 105);
+		navPanel.add(goToDetails);
+
+		JButton goToEdit = new JButton("");
+		goToEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.edit();
+			}
+		});
+		goToEdit.setIcon(new ImageIcon(detailsSignature.class.getResource("/Icons/icons8-edit-100.png")));
+		goToEdit.setBorder(new LineBorder(new Color(210, 153, 47), 2));
+		goToEdit.setBackground(new Color(252, 209, 156));
+		goToEdit.setBounds(57, 432, 131, 105);
+		navPanel.add(goToEdit);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(0, 0, 459, 611);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel titleTxt = new JLabel("Eliminar Asignatura");
+		titleTxt.setFont(new Font("Lato", Font.PLAIN, 43));
+		titleTxt.setFont(new Font("Lato", Font.PLAIN, 43));
+		titleTxt.setBounds(10, 24, 403, 53);
+		panel.add(titleTxt);
+		
+		JLabel idTxt = new JLabel("Ingresa ID de Asignatura");
+		idTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		idTxt.setBounds(9, 130, 175, 20);
+		panel.add(idTxt);
+		
+		JTextField idField = new JTextField();
+		idField.setBackground(new Color(230, 230, 230));
+		idField.setBounds(193, 132, 156, 20);
+		panel.add(idField);
+		idField.setColumns(10);
+		
+		JButton searchID = new JButton("Buscar");
+		searchID.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		searchID.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchID.setBackground(new Color(252, 209, 156));
+		searchID.setBounds(358, 132, 92, 20);
+		panel.add(searchID);
+		
+		JTable table = new JTable();
+		table.setBounds(10, 161, 439, 346);
+		panel.add(table);
+		
+		JButton backToMenu = new JButton("Volver al Menu");
+		backToMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				controller = new SignatureController();
+				controller.menu();
+			}
+		});
+		backToMenu.setBackground(new Color(252, 209, 156));
+		backToMenu.setFont(new Font("Lato", Font.PLAIN, 16));
+		backToMenu.setBounds(10, 546, 145, 35);
+		panel.add(backToMenu);
+		
+		JButton deleteBttn = new JButton("Eliminar Asignatura");
+		deleteBttn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		deleteBttn.setFont(new Font("Lato", Font.PLAIN, 16));
+		deleteBttn.setBackground(new Color(252, 209, 156));
+		deleteBttn.setBounds(262, 546, 187, 35);
+		panel.add(deleteBttn);
 		
 		frame.setVisible(true);
 		frame.repaint();
