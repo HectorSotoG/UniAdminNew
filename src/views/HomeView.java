@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import controllers.GroupsController;
 import controllers.HomeController;
+import controllers.SignatureController;
 import controllers.StudentsController;
 import controllers.TeachersController;
 import designer.HomeDesign;
@@ -27,6 +28,7 @@ public class HomeView {
 	private TeachersController teachers; 
 	private StudentsController students;
 	private GroupsController groups;
+	private SignatureController signatures;
 	
 	public void HomeView() {
 		
@@ -82,6 +84,15 @@ public class HomeView {
 		homePanel.add(studentButton);
 		
 		JButton classButton = new JButton("");
+		classButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				
+				signatures = new SignatureController();
+				signatures.menu();
+				
+			}
+		});
 		classButton.setIcon(new ImageIcon(HomeDesign.class.getResource("/Icons/icons8-signature-100.png")));
 		classButton.setBackground(new Color(252, 209, 156));
 		classButton.setBounds(57, 361, 220, 180);

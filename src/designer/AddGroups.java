@@ -24,10 +24,11 @@ public class AddGroups extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField idStudent;
+	private JTextField studentField;
 	private JTextField idClass;
-	private JTable table;
 	private JTextField idTeacher;
+	private JTextField nameField;
+	private JTextField scheduleField;
 
 	/**
 	 * Launch the application.
@@ -120,100 +121,44 @@ public class AddGroups extends JFrame {
 		
 		JLabel titleTxtx = new JLabel("Añadir Grupo");
 		titleTxtx.setFont(new Font("Lato", Font.PLAIN, 43));
-		titleTxtx.setBounds(13, 11, 385, 60);
+		titleTxtx.setBounds(13, 41, 385, 60);
 		panel.add(titleTxtx);
 		
-		JLabel idStudentTxt = new JLabel("Introduzca ID del Alumno");
-		idStudentTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		idStudentTxt.setBounds(9, 113, 188, 20);
-		panel.add(idStudentTxt);
+		JLabel studentAmountTxt = new JLabel("Introduzca la cantidad de Alumnos");
+		studentAmountTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		studentAmountTxt.setBounds(13, 174, 256, 20);
+		panel.add(studentAmountTxt);
 		
-		idStudent = new JTextField();
-		idStudent.setBackground(new Color(230, 230, 230));
-		idStudent.setBackground(new Color(230, 230, 230));
-		idStudent.setFont(new Font("Lato", Font.PLAIN, 14));
-		idStudent.setBounds(206, 113, 145, 20);
-		panel.add(idStudent);
-		idStudent.setColumns(10);
-		
-		JButton addStudentID = new JButton("Añadir");
-		addStudentID.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		addStudentID.setFont(new Font("Lato", Font.PLAIN, 14));
-		addStudentID.setBackground(new Color(252, 209, 156));
-		addStudentID.setBounds(360, 113, 89, 20);
-		panel.add(addStudentID);
-		
-		JButton addClassID = new JButton("Añadir");
-		addClassID.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		addClassID.setFont(new Font("Lato", Font.PLAIN, 14));
-		addClassID.setBackground(new Color(252, 209, 156));
-		addClassID.setBounds(360, 151, 89, 20);
-		panel.add(addClassID);
+		studentField = new JTextField();
+		studentField.setBackground(new Color(230, 230, 230));
+		studentField.setBackground(new Color(230, 230, 230));
+		studentField.setFont(new Font("Lato", Font.PLAIN, 14));
+		studentField.setBounds(264, 174, 188, 20);
+		panel.add(studentField);
+		studentField.setColumns(10);
 		
 		idClass = new JTextField();
 		idClass.setFont(new Font("Lato", Font.PLAIN, 14));
 		idClass.setColumns(10);
 		idClass.setBackground(new Color(230, 230, 230));
-		idClass.setBounds(206, 151, 145, 20);
+		idClass.setBounds(264, 236, 188, 20);
 		panel.add(idClass);
 		
 		JLabel idClassTxt = new JLabel("Introduzca ID Asignatura");
 		idClassTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		idClassTxt.setBounds(9, 151, 188, 20);
+		idClassTxt.setBounds(13, 236, 188, 20);
 		panel.add(idClassTxt);
-		
-		table = new JTable();
-		table.setBorder(new LineBorder(new Color(230, 230, 230)));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"Estudiantes", "Asignaturas"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.setBounds(13, 182, 435, 318);
-		panel.add(table);
-		
-		JButton addTeacherID = new JButton("Añadir");
-		addTeacherID.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		addTeacherID.setFont(new Font("Lato", Font.PLAIN, 14));
-		addTeacherID.setBackground(new Color(252, 209, 156));
-		addTeacherID.setBounds(364, 523, 89, 20);
-		panel.add(addTeacherID);
 		
 		idTeacher = new JTextField();
 		idTeacher.setFont(new Font("Lato", Font.PLAIN, 14));
 		idTeacher.setColumns(10);
 		idTeacher.setBackground(new Color(230, 230, 230));
-		idTeacher.setBounds(210, 523, 145, 20);
+		idTeacher.setBounds(264, 361, 188, 20);
 		panel.add(idTeacher);
 		
 		JLabel idTeacherTxt = new JLabel("Introduzca ID del Docente");
 		idTeacherTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		idTeacherTxt.setBounds(13, 523, 188, 20);
+		idTeacherTxt.setBounds(17, 361, 188, 20);
 		panel.add(idTeacherTxt);
 		
 		JButton backToMenu = new JButton("Volver al Menu");
@@ -235,5 +180,29 @@ public class AddGroups extends JFrame {
 		addGroup.setBackground(new Color(252, 209, 156));
 		addGroup.setBounds(303, 566, 150, 34);
 		panel.add(addGroup);
+		
+		JLabel groupNameTxt = new JLabel("Introduzca nombre del Grupo");
+		groupNameTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		groupNameTxt.setBounds(13, 302, 231, 20);
+		panel.add(groupNameTxt);
+		
+		nameField = new JTextField();
+		nameField.setFont(new Font("Lato", Font.PLAIN, 14));
+		nameField.setColumns(10);
+		nameField.setBackground(new Color(230, 230, 230));
+		nameField.setBounds(264, 302, 188, 20);
+		panel.add(nameField);
+		
+		JLabel turnTxt = new JLabel("Introduzca ID del Docente");
+		turnTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		turnTxt.setBounds(17, 428, 188, 20);
+		panel.add(turnTxt);
+		
+		scheduleField = new JTextField();
+		scheduleField.setFont(new Font("Lato", Font.PLAIN, 14));
+		scheduleField.setColumns(10);
+		scheduleField.setBackground(new Color(230, 230, 230));
+		scheduleField.setBounds(264, 428, 188, 20);
+		panel.add(scheduleField);
 	}
 }

@@ -25,7 +25,7 @@ public class AuthModel {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
-					"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+					"freedb_HectorSoto", "Xwy$zFx9AT$XZNN");
 
 			java.sql.Statement stmnt = con.createStatement();
 			ResultSet rs = stmnt.executeQuery(
@@ -56,7 +56,7 @@ public class AuthModel {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql.freedb.tech:3306/freedb_UniAdmin",
-					"freedb_Hector Soto", "%Bm*thDf4nVtAB5");
+					"freedb_HectorSoto", "Xwy$zFx9AT$XZNN");
 
 			PreparedStatement insertar = con.prepareStatement("INSERT INTO Administradores VALUES(?,?,?,?,?,?)");
 
