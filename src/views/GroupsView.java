@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -282,31 +283,6 @@ public class GroupsView {
 		idTeacherTxt.setBounds(17, 361, 188, 20);
 		panel.add(idTeacherTxt);
 
-		JButton backToMenu = new JButton("Volver al Menu");
-		backToMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				frame.dispose();
-
-				controller = new GroupsController();
-				controller.menu();
-			}
-		});
-		backToMenu.setFont(new Font("Lato", Font.PLAIN, 16));
-		backToMenu.setBackground(new Color(252, 209, 156));
-		backToMenu.setBounds(13, 566, 150, 34);
-		panel.add(backToMenu);
-
-		JButton addGroup = new JButton("Añadir Grupo");
-		addGroup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		addGroup.setFont(new Font("Lato", Font.PLAIN, 16));
-		addGroup.setBackground(new Color(252, 209, 156));
-		addGroup.setBounds(303, 566, 150, 34);
-		panel.add(addGroup);
-
 		JLabel groupNameTxt = new JLabel("Introduzca nombre del Grupo");
 		groupNameTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		groupNameTxt.setBounds(13, 302, 231, 20);
@@ -330,6 +306,47 @@ public class GroupsView {
 		scheduleField.setBackground(new Color(230, 230, 230));
 		scheduleField.setBounds(264, 428, 188, 20);
 		panel.add(scheduleField);
+
+		JButton backToMenu = new JButton("Volver al Menu");
+		backToMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				frame.dispose();
+
+				controller = new GroupsController();
+				controller.menu();
+			}
+		});
+		backToMenu.setFont(new Font("Lato", Font.PLAIN, 16));
+		backToMenu.setBackground(new Color(252, 209, 156));
+		backToMenu.setBounds(13, 566, 150, 34);
+		panel.add(backToMenu);
+
+		JButton addGroup = new JButton("Añadir Grupo");
+		addGroup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = nameField.getText();
+				String students = studentField.getText();
+				String teacher = idTeacher.getText();
+				String signature = idClass.getText();
+				String schedule = scheduleField.getText();
+
+				if (name.isEmpty() || students.isEmpty() || teacher.isEmpty() || signature.isEmpty()
+						|| schedule.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Algún campo está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				} else if (functions.add(name, students, teacher, signature, schedule)) {
+					JOptionPane.showMessageDialog(null, "Grupo añadido con éxito", "HECHO",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+
+					JOptionPane.showMessageDialog(null, "Algún campo está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		addGroup.setFont(new Font("Lato", Font.PLAIN, 16));
+		addGroup.setBackground(new Color(252, 209, 156));
+		addGroup.setBounds(303, 566, 150, 34);
+		panel.add(addGroup);
 
 		frame.setVisible(true);
 		frame.repaint();
@@ -436,16 +453,6 @@ public class GroupsView {
 		goToMenu.setBounds(10, 558, 147, 31);
 		panel.add(goToMenu);
 
-		JButton editBtn = new JButton("Completar");
-		editBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		editBtn.setFont(new Font("Lato", Font.PLAIN, 16));
-		editBtn.setBackground(new Color(252, 209, 156));
-		editBtn.setBounds(302, 558, 147, 31);
-		panel.add(editBtn);
-
 		JLabel idTxt = new JLabel("Ingrese ID del Grupo");
 		idTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		idTxt.setBounds(19, 141, 147, 20);
@@ -456,16 +463,6 @@ public class GroupsView {
 		idField.setBounds(185, 141, 147, 22);
 		panel.add(idField);
 		idField.setColumns(10);
-
-		JButton searchGroup = new JButton("Buscar");
-		searchGroup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		searchGroup.setBackground(new Color(252, 209, 156));
-		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
-		searchGroup.setBounds(351, 141, 89, 23);
-		panel.add(searchGroup);
 
 		JLabel studentCountTxt = new JLabel("Cantidad de Estudiantes");
 		studentCountTxt.setFont(new Font("Lato", Font.PLAIN, 16));
@@ -478,7 +475,7 @@ public class GroupsView {
 		studentCount.setBounds(215, 254, 225, 22);
 		panel.add(studentCount);
 
-		JLabel signatureTxt = new JLabel("Asignatura");
+		JLabel signatureTxt = new JLabel("ID de la Asignatura");
 		signatureTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		signatureTxt.setBounds(19, 322, 147, 20);
 		panel.add(signatureTxt);
@@ -489,7 +486,7 @@ public class GroupsView {
 		signatureField.setBounds(215, 323, 225, 22);
 		panel.add(signatureField);
 
-		JLabel teacherTxt = new JLabel("Profesor");
+		JLabel teacherTxt = new JLabel("ID del Profesor");
 		teacherTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		teacherTxt.setBounds(19, 404, 147, 20);
 		panel.add(teacherTxt);
@@ -499,6 +496,47 @@ public class GroupsView {
 		teacherField.setBackground(new Color(230, 230, 230));
 		teacherField.setBounds(215, 404, 225, 22);
 		panel.add(teacherField);
+
+		JButton searchGroup = new JButton("Buscar");
+		searchGroup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+
+				if (id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Algun campo está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				} else {
+
+					functions.searchEdit(id, studentCount, signatureField, teacherField);
+				}
+			}
+		});
+		searchGroup.setBackground(new Color(252, 209, 156));
+		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchGroup.setBounds(351, 141, 89, 23);
+		panel.add(searchGroup);
+
+		JButton editBtn = new JButton("Completar");
+		editBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				String students = studentCount.getText();
+				String signature = signatureField.getText();
+				String teacher = teacherField.getText();
+
+				if (id.isEmpty() || students.isEmpty() || signature.isEmpty() || teacher.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Algún campo está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				} else if (functions.edit(id, students, signature, teacher)) {
+					JOptionPane.showMessageDialog(null, "Modificación completada", "HECHO",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "No se pudo modificar", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		editBtn.setFont(new Font("Lato", Font.PLAIN, 16));
+		editBtn.setBackground(new Color(252, 209, 156));
+		editBtn.setBounds(302, 558, 147, 31);
+		panel.add(editBtn);
 
 		frame.setVisible(true);
 		frame.repaint();
@@ -611,17 +649,6 @@ public class GroupsView {
 		panel.add(idField);
 		idField.setColumns(10);
 
-		JButton searchGroup = new JButton("Buscar");
-		searchGroup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		searchGroup.setBackground(new Color(252, 209, 156));
-		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
-		searchGroup.setBounds(351, 141, 89, 23);
-		panel.add(searchGroup);
-
 		JTable table = new JTable();
 		table.setColumnSelectionAllowed(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -631,6 +658,23 @@ public class GroupsView {
 		table.getColumnModel().getColumn(2).setPreferredWidth(118);
 		table.setBounds(19, 205, 421, 281);
 		panel.add(table);
+		
+		JButton searchGroup = new JButton("Buscar");
+		searchGroup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				
+				if(id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Algún campo está vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else {
+					functions.dataTable(id, table);
+				}
+			}
+		});
+		searchGroup.setBackground(new Color(252, 209, 156));
+		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchGroup.setBounds(351, 141, 89, 23);
+		panel.add(searchGroup);
 
 		frame.setVisible(true);
 		frame.repaint();
@@ -746,18 +790,7 @@ public class GroupsView {
 		idField.setBounds(185, 141, 147, 22);
 		panel.add(idField);
 		idField.setColumns(10);
-
-		JButton searchGroup = new JButton("Buscar");
-		searchGroup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		searchGroup.setBackground(new Color(252, 209, 156));
-		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
-		searchGroup.setBounds(351, 141, 89, 23);
-		panel.add(searchGroup);
-
+		
 		JTable table = new JTable();
 		table.setColumnSelectionAllowed(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -768,9 +801,37 @@ public class GroupsView {
 		table.setBounds(19, 205, 421, 281);
 		panel.add(table);
 
+		JButton searchGroup = new JButton("Buscar");
+		searchGroup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				String id = idField.getText();
+				
+				if(id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Campo ID vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else {
+					functions.dataTable(id, table);
+				}
+			}
+		});
+		searchGroup.setBackground(new Color(252, 209, 156));
+		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchGroup.setBounds(351, 141, 89, 23);
+		panel.add(searchGroup);
+
+
 		JButton downloadBtn = new JButton("Descargar Info.");
 		downloadBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String id = idField.getText();
+				
+				if(id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Campo ID vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else if(functions.download(id)) {
+					JOptionPane.showMessageDialog(null, "Descarga completada", "HECHO", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "No se pudo descargar", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		downloadBtn.setFont(new Font("Lato", Font.PLAIN, 16));
@@ -892,18 +953,7 @@ public class GroupsView {
 		idField.setBounds(185, 141, 147, 22);
 		panel.add(idField);
 		idField.setColumns(10);
-
-		JButton searchGroup = new JButton("Buscar");
-		searchGroup.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		searchGroup.setBackground(new Color(252, 209, 156));
-		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
-		searchGroup.setBounds(351, 141, 89, 23);
-		panel.add(searchGroup);
-
+		
 		JTable table = new JTable();
 		table.setColumnSelectionAllowed(true);
 		table.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
@@ -914,9 +964,41 @@ public class GroupsView {
 		table.setBounds(19, 205, 421, 281);
 		panel.add(table);
 
+		JButton searchGroup = new JButton("Buscar");
+		searchGroup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String id = idField.getText();
+				
+				if(id.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Campo ID vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else {
+					functions.dataTable(id, table);
+				}
+
+			}
+		});
+		searchGroup.setBackground(new Color(252, 209, 156));
+		searchGroup.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchGroup.setBounds(351, 141, 89, 23);
+		panel.add(searchGroup);
+
 		JButton deleteBtn = new JButton("Eliminar Grupo");
 		deleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				String id = idField.getText();
+				
+				if(id.isEmpty()) {
+
+					JOptionPane.showMessageDialog(null, "Campo ID vacío", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}else if(functions.delete(id)) {
+
+					JOptionPane.showMessageDialog(null, "Eliminación completada", "HECHO", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+
+					JOptionPane.showMessageDialog(null, "No se pudo eliminar", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		deleteBtn.setFont(new Font("Lato", Font.PLAIN, 16));
