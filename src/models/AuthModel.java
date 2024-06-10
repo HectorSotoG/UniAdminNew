@@ -15,7 +15,8 @@ import controllers.HomeController;
 public class AuthModel {
 
 	public HomeController home;
-	public void AuthModel() {
+	
+	public  AuthModel() {
 		
 
 	}

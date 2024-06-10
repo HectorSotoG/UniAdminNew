@@ -39,9 +39,9 @@ public class TeachersModels {
 			insertar.setString(1, "0");
 			insertar.setString(2, name);
 			insertar.setString(3, lstName);
-			insertar.setString(4, birthDate);
-			insertar.setString(5, email);
-			insertar.setString(6, tel);
+			insertar.setString(4, email);
+			insertar.setString(5, tel);
+			insertar.setString(6, birthDate);
 			insertar.setString(7, "0");
 			insertar.setString(8, schoolGrade);
 
@@ -191,9 +191,9 @@ public class TeachersModels {
 			table.addCell("ID");
 			table.addCell("Nombre");
 			table.addCell("Apellido");
-			table.addCell("Fecha Nacimiento");
 			table.addCell("Email");
 			table.addCell("Telefono");
+			table.addCell("Fecha de Nacimiento");
 			table.addCell("Foto");
 			table.addCell("Grado de Estudios");
 			

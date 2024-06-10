@@ -495,7 +495,7 @@ public class StudentsView {
 		contentPane.add(editPanel);
 		editPanel.setLayout(null);
 
-		JLabel editTxt = new JLabel("Editar Info. Docente");
+		JLabel editTxt = new JLabel("Editar Info. Alumno");
 		editTxt.setFont(new Font("Lato", Font.PLAIN, 43));
 		editTxt.setBounds(24, 21, 394, 48);
 		editPanel.add(editTxt);
@@ -562,7 +562,7 @@ public class StudentsView {
 		schoolGrade.setBounds(24, 484, 232, 20);
 		editPanel.add(schoolGrade);
 
-		JLabel lblIngresarGradoDe = new JLabel("Editar Grado de Estudios");
+		JLabel lblIngresarGradoDe = new JLabel("Editar Semestre");
 		lblIngresarGradoDe.setFont(new Font("Lato", Font.PLAIN, 16));
 		lblIngresarGradoDe.setBounds(24, 455, 232, 20);
 		editPanel.add(lblIngresarGradoDe);
@@ -580,7 +580,7 @@ public class StudentsView {
 		backToMenu.setBounds(24, 553, 152, 36);
 		editPanel.add(backToMenu);
 
-		JLabel IdTxt = new JLabel("Ingresar ID del Docente");
+		JLabel IdTxt = new JLabel("Ingresar ID del Alumno");
 		IdTxt.setFont(new Font("Lato", Font.PLAIN, 16));
 		IdTxt.setBounds(24, 93, 187, 20);
 		editPanel.add(IdTxt);

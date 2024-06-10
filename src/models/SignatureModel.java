@@ -173,7 +173,7 @@ public class SignatureModel {
 
 			table.addCell("ID");
 			table.addCell("Nombre");
-			table.addCell("Profesor");
+			table.addCell("ID del Profesor");
 			table.addCell("Optativa");
 			table.addCell("Carrera");
 
