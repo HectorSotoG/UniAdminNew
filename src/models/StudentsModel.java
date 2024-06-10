@@ -211,7 +211,7 @@ public class StudentsModel {
 					
 					pdf.add(table);
 				}else {
-					JOptionPane.showMessageDialog(null, "No se encontró un Docente con ese ID", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se encontró un Alumno con ese ID", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				pdf.close();

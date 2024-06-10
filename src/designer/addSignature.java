@@ -25,6 +25,7 @@ public class addSignature extends JFrame {
 	private JTextField nameField;
 	private JTextField careerField;
 	private JTextField teacherField;
+	private JTextField idField;
 
 	/**
 	 * Launch the application.
@@ -107,14 +108,37 @@ public class addSignature extends JFrame {
 		titleTxt.setBounds(23, 24, 403, 53);
 		panel.add(titleTxt);
 		
+
+		
+		JLabel signatureIdTxt = new JLabel("Ingresa ID de la Asignatura");
+		signatureIdTxt.setFont(new Font("Lato", Font.PLAIN, 16));
+		signatureIdTxt.setBounds(23, 137, 244, 20);
+		panel.add(signatureIdTxt);
+		
+		idField = new JTextField();
+		idField.setColumns(10);
+		idField.setBackground(new Color(230, 230, 230));
+		idField.setBounds(218, 137, 105, 20);
+		panel.add(idField);
+		
+		JButton searchBttn = new JButton("Buscar");
+		searchBttn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		searchBttn.setFont(new Font("Lato", Font.PLAIN, 16));
+		searchBttn.setBackground(new Color(252, 209, 156));
+		searchBttn.setBounds(333, 137, 97, 20);
+		panel.add(searchBttn);
+		
 		JLabel nameTxt = new JLabel("Editar Nombre de Asignatura");
 		nameTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		nameTxt.setBounds(23, 130, 244, 20);
+		nameTxt.setBounds(23, 186, 244, 20);
 		panel.add(nameTxt);
 		
 		nameField = new JTextField();
 		nameField.setBackground(new Color(230, 230, 230));
-		nameField.setBounds(23, 168, 403, 20);
+		nameField.setBounds(23, 224, 403, 20);
 		panel.add(nameField);
 		nameField.setColumns(10);
 		
@@ -122,23 +146,23 @@ public class addSignature extends JFrame {
 		careerField.setBackground(new Color(230, 230, 230));
 		careerField.setColumns(10);
 		careerField.setBackground(new Color(230, 230, 230));
-		careerField.setBounds(23, 251, 403, 20);
+		careerField.setBounds(23, 307, 403, 20);
 		panel.add(careerField);
 		
 		JLabel careerNameTxt = new JLabel("Editar Carrera donde se Imparte");
 		careerNameTxt.setFont(new Font("Lato", Font.PLAIN, 16));
-		careerNameTxt.setBounds(23, 213, 300, 20);
+		careerNameTxt.setBounds(23, 269, 300, 20);
 		panel.add(careerNameTxt);
 		
 		JLabel teacherID = new JLabel("Editar ID del Profesor");
 		teacherID.setFont(new Font("Lato", Font.PLAIN, 16));
-		teacherID.setBounds(23, 294, 300, 20);
+		teacherID.setBounds(23, 350, 300, 20);
 		panel.add(teacherID);
 		
 		teacherField = new JTextField();
 		teacherField.setColumns(10);
 		teacherField.setBackground(new Color(230, 230, 230));
-		teacherField.setBounds(23, 332, 403, 20);
+		teacherField.setBounds(23, 388, 403, 20);
 		panel.add(teacherField);
 		
 		JButton backToMenu = new JButton("Volver al Menu");
@@ -164,7 +188,7 @@ public class addSignature extends JFrame {
 		JRadioButton optional = new JRadioButton("Marcar si es Optativa");
 		optional.setBackground(new Color(255, 255, 255));
 		optional.setFont(new Font("Lato", Font.ITALIC, 16));
-		optional.setBounds(23, 398, 192, 23);
+		optional.setBounds(23, 454, 192, 23);
 		panel.add(optional);
 	}
 }
